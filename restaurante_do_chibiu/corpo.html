@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/restaurante_do_chibiu/elementos.css">
+    <link rel="stylesheet" href="/restaurante_do_chibiu/design.css">
+    <title>Restaurante do shibiu</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <header>
+        <img src="/restaurante_do_chibiu/imgs/logo.png" alt="Logo do Restaurante"
+            style="width: 130px; height: 130px; border-radius: 35px;">
+        <h1>CARDÁPIO DIGITAL</h1>
+
+        <button class="btn-carrinho" onclick="toggleCart()">🛒 Carrinho</button>
+    </header>
+
+    <button class="btn-lista" onclick="toggleSidebar()">☰</button>
+
+    <!-- Adicionei o ID mySidebar aqui para que o JavaScript encontre o elemento -->
+    <div id="mySidebar" class="lista_opcoes">
+        <button>Promoções</button>
+        <button>Comidas</button>
+        <button>Bebidas</button>
+        <button>Acompanhamentos</button>
+        <button class="btn-logoff">Sair</button>
+        <span class="copyright-sidebar">
+            &copy; 2025 Restaurante do Shibiu.<br>Todos os direitos reservados.
+        </span>
+    </div>
+
+    <main id="menu-container">
+        <!-- Itens do menu serão inseridos aqui pelo JavaScript -->
+    </main>
+
+    <div id="cart-sidebar" class="cart-sidebar">
+        <button class="close-cart-btn" onclick="toggleCart()">×</button>
+        <h2>Seu Carrinho</h2>
+        <div id="cart-items" class="cart-items">
+            <!-- Itens do carrinho serão inseridos aqui -->
+        </div>
+        <div id="cart-total" class="cart-total">
+            Total: R$ 0.00
+        </div>
+        <button class="checkout-btn" onclick="showCheckoutForm()">Finalizar Pedido</button>
+        <div id="checkout-form" class="checkout-form">
+            <h3>Detalhes para Entrega</h3>
+            <input type="text" id="address" placeholder="Endereço de Entrega" required>
+            <input type="text" id="coupon" placeholder="Cupom de Desconto (opcional)">
+            <button class="add-to-cart-btn" onclick="processOrder()">Confirmar Pedido</button>
+        </div>
+    </div>
+
+
+<script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("mySidebar");
+            sidebar.classList.toggle("open");
+        }
+
+        function toggleCart() {
+            const cartSidebar = document.getElementById("cart-sidebar");
+            cartSidebar.classList.toggle("open");
+        }
+
+        function showCheckoutForm() {
+            const checkoutForm = document.getElementById('checkout-form');
+            checkoutForm.classList.add('visible');
+        }
+
+        function processOrder() {
+            const address = document.getElementById('address').value;
+            const coupon = document.getElementById('coupon').value;
+            let message = `Pedido finalizado com sucesso!\n\nSeu pedido será entregue em: ${address}\n`;
+
+            if (coupon) {
+                message += `Cupom de desconto aplicado: ${coupon}`;
+            } else {
+                message += `Nenhum cupom foi utilizado.`;
+            }
+
+            // Usar um modal customizado em vez de alert()
+            alert(message);
+        }
+
+        const menuItems = [
+            {
+                id: 1,
+                name: "Hambúrguer Clássico",
+                description: "Delicioso hambúrguer com pão de brioche, carne suculenta, queijo cheddar, alface, tomate e maionese especial.",
+                price: 25.00,
+                image: "./imgs/hamburguer.png"
+            },
+            {
+                id: 2,
+                name: "Pizza de Pepperoni",
+                description: "Massa fina e crocante, molho de tomate fresco, queijo muçarela derretido e fatias generosas de pepperoni.",
+                price: 55.00,
+                image: "./imgs/pizza.png"
+            },
+            {
+                id: 3,
+                name: "Batata Frita",
+                description: "Porção grande de batata frita, crocante por fora e macia por dentro.",
+                price: 15.00,
+                image: "./imgs/batatao.png"
+            },
+            {
+                id: 4,
+                name: "Coca-Cola",
+                description: "Refrigerante 350ml.",
+                price: 8.00,
+                image: "./imgs/coca.png"
+            }
+        ];
+
+        let cart = [];
+
+        function renderMenu() {
+            const menuContainer = document.getElementById('menu-container');
+            menuContainer.innerHTML = '';
+            menuItems.forEach(item => {
+                const itemCard = document.createElement('div');
+                itemCard.className = 'menu-item';
+                itemCard.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="item-details">
+                        <h3>${item.name}</h3>
+                        <p>${item.description}</p>
+                        <span class="item-price">R$ ${item.price.toFixed(2)}</span>
+                        <button class="add-to-cart-btn" onclick="addToCart(${item.id})">Adicionar ao Carrinho</button>
+                    </div>
+                `;
+                menuContainer.appendChild(itemCard);
+            });
+        }
+
+        function addToCart(itemId) {
+            const item = menuItems.find(i => i.id === itemId);
+            const cartItem = cart.find(i => i.id === itemId);
+
+            if (cartItem) {
+                cartItem.quantity++;
+            } else {
+                cart.push({ ...item, quantity: 1 });
+            }
+            renderCart();
+        }
+
+        function renderCart() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotalElement = document.getElementById('cart-total');
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+                const cartItemElement = document.createElement('div');
+                cartItemElement.className = 'cart-item';
+                cartItemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="item-info">
+                        <h4>${item.name}</h4>
+                        <p>Quantidade: ${item.quantity} | R$ ${(item.price * item.quantity).toFixed(2)}</p>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(cartItemElement);
+            });
+
+            cartTotalElement.textContent = `Total: R$ ${total.toFixed(2)}`;
+        }
+
+        // Renderizar o menu quando a página for carregada
+        document.addEventListener('DOMContentLoaded', renderMenu);
+</script>
+</html>
