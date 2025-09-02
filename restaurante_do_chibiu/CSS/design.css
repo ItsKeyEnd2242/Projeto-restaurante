@@ -11,7 +11,7 @@ body {
 header {
     top: 0;
     left: 0;
-    width: 100%;
+    width: 94,5%;
     background-color: #d32218;
     color: #fff;
     padding: 10px 20px;
@@ -181,7 +181,7 @@ main {
 /* Estilos da barra lateral do carrinho */
 .cart-sidebar {
     position: fixed;
-    right: -350px;
+    right: -100%;
     width: 350px;
     height: 100%;
     top: 0;
@@ -215,6 +215,12 @@ main {
     gap: 15px;
     padding: 10px 0;
     border-bottom: 1px solid #eee;
+}
+
+.btn-carrinho{
+    right: 80%;
+    background-color: white;
+    border: solid black 1px;
 }
 
 .cart-item img {

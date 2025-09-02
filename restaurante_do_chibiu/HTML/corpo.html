@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/restaurante_do_chibiu/elementos.css">
-    <link rel="stylesheet" href="/restaurante_do_chibiu/design.css">
+    <link rel="stylesheet" href="/restaurante_do_chibiu/CSS/design.css">
+    <link rel="stylesheet" href="/restaurante_do_chibiu/CSS/elementos.css">
     <title>Restaurante do shibiu</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
 <body>
@@ -16,7 +15,7 @@
             style="width: 130px; height: 130px; border-radius: 35px;">
         <h1>CARDÁPIO DIGITAL</h1>
 
-        <button class="btn-carrinho" onclick="toggleCart()">🛒 Carrinho</button>
+    <button class="btn-carrinho" onclick="toggleCart()">🛒 Carrinho</button>
     </header>
 
     <button class="btn-lista" onclick="toggleSidebar()">☰</button>
@@ -27,7 +26,7 @@
         <button>Comidas</button>
         <button>Bebidas</button>
         <button>Acompanhamentos</button>
-        <button class="btn-logoff">Sair</button>
+        <button class="btn-logoff"><a href="/restaurante_do_chibiu/HTML/index_Login.html" style="color: white;"></a>Sair</a></button>
         <span class="copyright-sidebar">
             &copy; 2025 Restaurante do Shibiu.<br>Todos os direitos reservados.
         </span>
@@ -93,28 +92,28 @@
                 name: "Hambúrguer Clássico",
                 description: "Delicioso hambúrguer com pão de brioche, carne suculenta, queijo cheddar, alface, tomate e maionese especial.",
                 price: 25.00,
-                image: "./imgs/hamburguer.png"
+                image: "/restaurante_do_chibiu/imgs/hamburguer.png"
             },
             {
                 id: 2,
                 name: "Pizza de Pepperoni",
                 description: "Massa fina e crocante, molho de tomate fresco, queijo muçarela derretido e fatias generosas de pepperoni.",
                 price: 55.00,
-                image: "./imgs/pizza.png"
+                image: "/restaurante_do_chibiu/imgs/pizza.png"
             },
             {
                 id: 3,
                 name: "Batata Frita",
                 description: "Porção grande de batata frita, crocante por fora e macia por dentro.",
                 price: 15.00,
-                image: "./imgs/batatao.png"
+                image: "/restaurante_do_chibiu/imgs/batatao.png"
             },
             {
                 id: 4,
                 name: "Coca-Cola",
                 description: "Refrigerante 350ml.",
                 price: 8.00,
-                image: "./imgs/coca.png"
+                image: "/restaurante_do_chibiu/imgs/coca.png"
             }
         ];
 
