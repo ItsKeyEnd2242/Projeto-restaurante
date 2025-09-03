@@ -20,7 +20,6 @@ body {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
-    /* escurece a imagem para dar contraste */
     z-index: 0;
 }
 
@@ -61,7 +60,7 @@ body {
     margin-top: 15px;
     border: none;
     border-radius: 8px;
-    background: #d35400;
+    background: #d32218;
     color: white;
     font-size: 16px;
     cursor: pointer;
@@ -69,7 +68,8 @@ body {
 }
 
 .login-container button:hover {
-    background: #e67e22;
+    background: white;
+    border: solid black 1px;
 }
 
 .login-container p {
@@ -79,7 +79,7 @@ body {
 }
 
 .login-container a {
-    color: #d35400;
+    color: red;
     text-decoration: none;
 }
 

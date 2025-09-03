@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,27 +19,24 @@
 
     <button class="btn-lista" onclick="toggleSidebar()">☰</button>
 
-    <!-- Adicionei o ID mySidebar aqui para que o JavaScript encontre o elemento -->
     <div id="mySidebar" class="lista_opcoes">
         <button>Promoções</button>
         <button>Comidas</button>
         <button>Bebidas</button>
         <button>Acompanhamentos</button>
-        <button class="btn-logoff"><a href="/restaurante_do_chibiu/HTML/index_Login.html" style="color: white;"></a>Sair</a></button>
+        <button class="btn-logoff"><a href="/restaurante_do_chibiu/HTML/index_Login.html" style="color: white;">Sair</a></button>
         <span class="copyright-sidebar">
             &copy; 2025 Restaurante do Shibiu.<br>Todos os direitos reservados.
         </span>
     </div>
 
     <main id="menu-container">
-        <!-- Itens do menu serão inseridos aqui pelo JavaScript -->
     </main>
 
     <div id="cart-sidebar" class="cart-sidebar">
         <button class="close-cart-btn" onclick="toggleCart()">×</button>
         <h2>Seu Carrinho</h2>
         <div id="cart-items" class="cart-items">
-            <!-- Itens do carrinho serão inseridos aqui -->
         </div>
         <div id="cart-total" class="cart-total">
             Total: R$ 0.00
@@ -82,7 +78,6 @@
                 message += `Nenhum cupom foi utilizado.`;
             }
 
-            // Usar um modal customizado em vez de alert()
             alert(message);
         }
 
@@ -172,8 +167,6 @@
 
             cartTotalElement.textContent = `Total: R$ ${total.toFixed(2)}`;
         }
-
-        // Renderizar o menu quando a página for carregada
         document.addEventListener('DOMContentLoaded', renderMenu);
 </script>
 </html>
